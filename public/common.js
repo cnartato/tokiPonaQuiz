@@ -8,8 +8,6 @@ export async function getToki()
 
     for (let i = 1; i < lines.length; i++) {
         let line = lines[i]
-        // let type = line.match(/[A-Z]{1,}/g)
-        // console.log(type, line)
         let cells = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/g)
 
         let fixedCells = []
