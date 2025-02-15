@@ -5,13 +5,6 @@
     gap: 1rem
 }
 
-a 
-{
-    position: absolute;
-    top: 0;
-    padding: 10px;
-    color: darkgray
-}
 
 body 
 {
@@ -59,7 +52,49 @@ textarea, .output
 {
     width: 50%;
     height: 20%;
-    background: rgb(30,30,30);
+    overflow-y: auto;
+}
+input, textarea {
     outline: none;
     color: inherit;
+    background: rgb(40,40,40);
+    margin: 10px;
+}
+
+.resultContainer
+{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    gap: 20px;
+    width: 80%;
+    overflow-y: auto;
+}
+
+.heady
+{
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    color: darkgray
+}
+a 
+{
+    color: inherit
+}
+
+.result
+{
+    padding: 20px;
+    display:flex;
+    flex-direction: column;
+
+    border-width: 2px;
+    border-style: outset;
+    border-color: light-dark(rgb(78, 78, 78), rgb(103, 103, 103));
+    border-image: initial;
+}
+.resultValue
+{
+    font-size:large;
 }

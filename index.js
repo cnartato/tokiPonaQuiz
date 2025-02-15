@@ -1,18 +1,14 @@
 import {getToki} from './common.js'
 
+const optionsCount = 5
+
 let tokis
 let currentToki 
-
-// const MODE = 'tokiToEnglish' 
-let MODE = 'englishToToki' 
-
-const optionsCount = 5
+let MODE = 'englishToToki' || 'tokiToEnglish'
 
 const displayElement = document.querySelector('.display')
 const optionsContainerElement = document.querySelector('.optionsContainer')
 const winContainerElement = document.querySelector('.winContainer')
-
-// document.querySelector('button').addEventListener('click', newRound)
 document.addEventListener('DOMContentLoaded', init)
 
 async function init()
@@ -34,17 +30,19 @@ function newRound()
     clearOptionElements ()
 
     currentToki = pullRandomToki()
-
+    
     displayElement.textContent = MODE == 'tokiToEnglish' ? currentToki[0] : currentToki[2]
 
     for (let i = 0; i < optionsCount; i++) {
-        if(i==0)
-        {
+        if(i==0) //The first option is correct, the rest are random
             generateOptionElement(MODE == 'tokiToEnglish' ? currentToki[2] : currentToki[0], true)
-        }
         else 
         {
             let subToki = pullRandomToki()
+            //If random toki is the correct answer, keep trying to pick another one instead
+            while(subToki == currentToki) {
+                subToki = pullRandomToki() //too lazy to fix this
+            }
             generateOptionElement(MODE == 'tokiToEnglish' ? subToki[2] : subToki[0], false)
         }
     }
@@ -62,14 +60,6 @@ function generateOptionElement (name, isCorrect)
     newOption.setAttribute('correct',isCorrect)
     newOption.addEventListener('click', e=>selectOption(isCorrect,e))
     optionsContainerElement.appendChild(newOption)
-}
-
-function generateWinElement(name)
-{
-    let newWin = document.createElement('div')
-    newWin.className = 'win'
-    newWin.textContent = name
-    winContainerElement.appendChild(newWin)
 }
 
 function selectOption(isCorrect, e)
@@ -90,11 +80,15 @@ function selectOption(isCorrect, e)
         e.target.style.background = 'red'
         let correctA = document.querySelector('[correct=true]')
         correctA.style.background = 'green'
-
-        // setTimeout(timer=> {
-        //     newRound()
-        // }, 2000)
     }
+}
+
+function generateWinElement(name)
+{
+    let newWin = document.createElement('div')
+    newWin.className = 'win'
+    newWin.textContent = name
+    winContainerElement.appendChild(newWin)
 }
 
 function clearOptionElements()
