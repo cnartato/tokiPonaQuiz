@@ -1,8 +1,18 @@
+
+
 .optionsContainer
 {
     display:flex;
     justify-content: space-evenly;
     gap: 1rem
+}
+
+.nav 
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
 }
 
 
@@ -21,6 +31,8 @@ body
 
     transition: background-color 1s;
     color: white;
+
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 
