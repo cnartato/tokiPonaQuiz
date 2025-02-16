@@ -17,7 +17,9 @@ async function init()
 function search(text)
 {
     clearResultElements() 
-    let relevantTokis = tokis.filter(toki=>toki[0].includes(text))
+    let relevantTokis = tokis.filter(toki=>{
+        return toki[2].includes(text) || toki[0].startsWith(text)
+    ß})
     
     relevantTokis.forEach(toki => {
         generateResultElement(toki[0], toki[2])
