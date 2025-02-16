@@ -2,21 +2,120 @@
     src: url('crooblyhand.ttf'); } 
 
 :root {
-scrollbar-color: rgb(20,20,20) transparent;
+    scrollbar-color: rgb(20,20,20) transparent;
+
+    --main-color: #cd8acf;
+
+    --lighter-color: #d5b1d6;
+
+    --mono-color: #BE66C0;
+
+    --ana-color: #CF8AAF;
+    --ana2-color: #AB8ACF;
+
+    --tri-color: #CFCD8A;
+    --tri2-color: #8ACFCD;
+
+    --tet-color: #CFAB8A;
+    --tet2-color: #8CCF8A;
+    --tet3-color: #8CCF8A;
+}
+
+@keyframes sketchy {
+    0% { clip-path: polygon(0% 3%, 100% 0%, 97% 100%, 3% 97%); transform: translate(0, 0) rotate(0deg); }
+    20% { clip-path: polygon(2% 1%, 99% 2%, 98% 98%, 1% 99%); transform: translate(-2px, 1px) rotate(-1deg); }
+    40% { clip-path: polygon(1% 0%, 97% 3%, 99% 97%, 3% 99%); transform: translate(2px, -1px) rotate(1deg); }
+    60% { clip-path: polygon(0% 2%, 98% 0%, 100% 98%, 2% 100%); transform: translate(-1px, -2px) rotate(-2deg); }
+    80% { clip-path: polygon(3% 1%, 100% 2%, 97% 99%, 1% 97%); transform: translate(1px, 2px) rotate(2deg); }
+    100% { clip-path: polygon(0% 3%, 100% 0%, 97% 100%, 3% 97%); transform: translate(0, 0) rotate(0deg); }
+}
+@keyframes sketchy2 {
+    0% { clip-path: polygon(0% 3%, 100% 0%, 97% 100%, 3% 97%); transform: translate(0, 0) rotate(0deg); }
+    20% { clip-path: polygon(2% 1%, 98% 2%, 97% 98%, 1% 99%); transform: translate(-1px, 1px) rotate(1deg); }
+    40% { clip-path: polygon(0% 2%, 98% 0%, 100% 97%, 2% 100%); transform: translate(1px, -1px) rotate(-1deg); }
+    60% { clip-path: polygon(3% 0%, 100% 3%, 97% 100%, 0% 98%); transform: translate(-1px, -1px) rotate(2deg); }
+    80% { clip-path: polygon(1% 4%, 99% 1%, 97% 98%, 2% 100%); transform: translate(0px, 0px) rotate(-2deg); }
+    100% { clip-path: polygon(0% 3%, 100% 0%, 97% 100%, 3% 97%); transform: translate(0, 0) rotate(0deg); }
+}
+@keyframes sketchy3 {
+    0% { clip-path: polygon(0% 4%, 100% 0%, 95% 100%, 5% 96%); transform: translate(0, 0) rotate(0deg); }
+    20% { clip-path: polygon(3% 2%, 97% 4%, 96% 95%, 4% 98%); transform: translate(-2px, 1px) rotate(2deg); }
+    40% { clip-path: polygon(1% 3%, 98% 1%, 99% 97%, 2% 98%); transform: translate(2px, -1px) rotate(-2deg); }
+    60% { clip-path: polygon(2% 5%, 100% 2%, 94% 96%, 3% 97%); transform: translate(-1px, -2px) rotate(3deg); }
+    80% { clip-path: polygon(0% 3%, 97% 0%, 98% 98%, 2% 99%); transform: translate(1px, 2px) rotate(-1deg); }
+    100% { clip-path: polygon(0% 4%, 100% 0%, 95% 100%, 5% 96%); transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes bnf {
+    0% { transform: rotate(1deg); }
+    25% { transform: rotate(-1deg); }
+    50% {transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+}
+  
+.sketchy {
+    display: inline-block;
+    padding: 10px 20px;
+    animation: sketchy 1s steps(1) infinite;
+}
+.sketchy2 {
+    display: inline-block;
+    padding: 10px 20px;
+    animation: sketchy2 1s steps(1) infinite;
+}
+.sketchy3 {
+    display: inline-block;
+    padding: 10px 20px;
+    animation: sketchy2 1s steps(1) infinite;
+}
+.bnf {
+    display: inline-block;
+    padding: 10px 20px;
+    animation: bnf 2s steps(1) infinite;
+}
+
+  
+body::before {
+    position: absolute;
+    z-index: -5;
+    pointer-events: none;
+    width: 100%;
+    height: 100vh;
+    background: 
+        radial-gradient(circle, rgba(255, 255, 255, 0.005) 25%, rgba(0, 0, 0, 0.01) 25%) 0 0,
+        radial-gradient(circle, rgba(255, 255, 255, 0.005) 25%, rgba(0, 0, 0, 0.01) 25%) 5px 5px,
+        radial-gradient(circle, rgba(255, 255, 255, 0.005) 25%, rgba(0, 0, 0, 0.01) 25%) 10px 10px;
+    background-size: 15px 15px;
+    animation: noise 5s infinite;
+    content: '';
+}
+
+@keyframes noise {
+0% {
+    background-position: 0 0, 5px 5px, 10px 10px;
+}
+50% {
+    background-position: 10px 10px, -5px -5px, 15px 15px;
+}
+100% {
+    background-position: 0 0, 5px 5px, 10px 10px;
+}
 }
 
 body 
 {
+    overflow: hidden;
     user-select: none;
     margin: 0;
     display:flex;
     height: 100%;
     font-size: xx-large;
+    font-weight: bold;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    background: rgb(30,30,30);
+    background: var(--main-color);
 
     transition: background-color 1s;
     color: white;
@@ -30,7 +129,7 @@ body
 }
 
 body.greenify { /*greenify*/
-    background-color: rgba(0,108,0, 1);
+    background-color: rgb(77, 151, 77);
     transition: background-color 0s
 }
 
@@ -54,10 +153,16 @@ body.greenify { /*greenify*/
 button 
 {
     font-size: inherit;
+    font-weight: inherit;
     color: inherit;
-    background: transparent
+    background-color: var(--mono-color);
+    cursor: pointer;
+    border-color: lightpink
 }
-
+.display 
+{
+    padding: 10px
+}
 .winContainer{
     position: absolute;
     left: 0;
@@ -80,7 +185,7 @@ textarea, .output
 input, textarea {
     outline: none;
     color: inherit;
-    background: rgb(40,40,40);
+    background: var(--lighter-color);
     margin: 10px;
 }
 
@@ -99,11 +204,14 @@ input, textarea {
     position: absolute;
     top: 0;
     padding: 10px;
-    color: darkgray
 }
 a 
 {
-    color: inherit
+    color: inherit;
+    text-decoration: none;
+}
+a:hover, button:hover {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* white text shadow */
 }
 
 .result
@@ -112,9 +220,11 @@ a
     display:flex;
     flex-direction: column;
 
+    background: var(--mono-color);
+
     border-width: 2px;
     border-style: outset;
-    border-color: light-dark(rgb(78, 78, 78), rgb(103, 103, 103));
+    border-color: light-dark(rgb(204, 204, 204), rgb(206, 206, 206));
     border-image: initial;
 }
 .resultValue
