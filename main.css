@@ -2,7 +2,6 @@
     src: url('crooblyhand.ttf'); } 
 
 :root {
-    scrollbar-color: rgb(20,20,20) transparent;
 
     --main-color: #cd8acf;
 
@@ -19,6 +18,13 @@
     --tet-color: #CFAB8A;
     --tet2-color: #8CCF8A;
     --tet3-color: #8CCF8A;
+
+    --green-color: #5c9b5a;
+    --red-color: #db5959;
+
+    --container-direction: 'set by js';
+
+    scrollbar-color: var(--ana-color) transparent;
 }
 
 @keyframes sketchy {
@@ -137,6 +143,7 @@ body.greenify { /*greenify*/
 .optionsContainer
 {
     display:flex;
+    flex-direction: var(--container-direction);
     justify-content: space-evenly;
     gap: 1rem
 }
@@ -188,6 +195,11 @@ input, textarea {
     background: var(--lighter-color);
     margin: 10px;
 }
+input 
+{
+    font-size: inherit;
+    font-weight: inherit;
+}
 
 .resultContainer
 {
@@ -230,4 +242,22 @@ a:hover, button:hover {
 .resultValue
 {
     font-size:large;
+}
+
+.green 
+{
+    background: var(--green-color)
+}
+.red 
+{
+    background: var(--red-color)
+}
+
+.flexColumn
+{
+    flex-direction: column;
+}
+.largeFont
+{
+    font-size: large;
 }

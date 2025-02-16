@@ -16,13 +16,10 @@ async function init()
     tokis = await getToki()
 
     if(Math.random()>.5) MODE = 'tokiToEnglish'
-
-    if(MODE == 'tokiToEnglish') optionsContainerElement.style.flexDirection = 'column'
+    if(MODE == 'tokiToEnglish') optionsContainerElement.classList.add('flexColumn')
 
     newRound()
 }
-
-
 function newRound()
 {
     if(!tokis) return
@@ -54,7 +51,7 @@ function generateOptionElement (name, isCorrect)
     newOption.className = 'option'
     newOption.textContent = name
 
-    if(MODE == 'tokiToEnglish') newOption.style.fontSize = '16px'
+    if(MODE == 'tokiToEnglish') newOption.classList.add('largeFont')
 
     newOption.style.order = Math.floor(Math.random() * 100)
     newOption.setAttribute('correct',isCorrect)
@@ -77,9 +74,9 @@ function selectOption(isCorrect, e)
     {
         displayElement.textContent = currentToki[0] + ' = ' + currentToki[2]
 
-        e.target.style.background = 'red'
+        e.target.classList.add('red')
         let correctA = document.querySelector('[correct=true]')
-        correctA.style.background = 'green'
+        correctA.classList.add('green')
     }
 }
 
